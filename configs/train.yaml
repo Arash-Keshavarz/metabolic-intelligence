@@ -1,0 +1,38 @@
+seed: 42
+device: "cpu"   # cpu | cuda
+
+mlflow:
+  experiment_name: "glycemic_forecasting"
+  tracking_uri: null   # if null, read from MLFLOW_TRACKING_URI env var or use local ./mlruns
+
+data:
+  processed_dir: data/processed
+  batch_size: 256
+  num_workers: 0
+
+task:
+  horizon_minutes: 120
+  freq_minutes: 5
+
+model:
+  name: "lstm"   # lstm | transformer
+  input_dim: null     # inferred
+  hidden_dim: 128
+  num_layers: 2
+  dropout: 0.15
+
+  transformer:
+    d_model: 128
+    nhead: 4
+    num_layers: 3
+    dim_feedforward: 256
+
+training:
+  epochs: 15
+  lr: 0.0007
+  weight_decay: 0.0001
+  grad_clip_norm: 1.0
+  early_stopping_patience: 5
+
+artifacts:
+  output_dir: artifacts

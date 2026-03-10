@@ -1,0 +1,41 @@
+seed: 42
+
+output_path: data/raw/synthetic_wearable.csv
+
+users:
+  n_users: 100
+  user_id_prefix: "user_"
+
+time:
+  days: 30
+  freq_minutes: 5
+  start_timestamp: "2025-01-01T00:00:00"
+
+physiology:
+  base_glucose_mean_mgdl: 105.0
+  base_glucose_sd_mgdl: 10.0
+  circadian_amp_mgdl: 12.0
+  circadian_phase_shift_hours_sd: 1.5
+
+meals:
+  meals_per_day_mean: 3.0
+  meals_per_day_sd: 0.5
+  carbs_mean_g: 55.0
+  carbs_sd_g: 20.0
+  spike_per_carb_mgdl: 0.7
+  spike_decay_minutes: 90
+
+activity:
+  daily_activity_mean: 0.55
+  daily_activity_sd: 0.15
+  activity_effect_mgdl: 10.0
+
+sleep:
+  sleep_hours_mean: 7.2
+  sleep_hours_sd: 1.0
+  sleep_sensitivity_effect: 0.15
+
+noise:
+  glucose_noise_sd_mgdl: 6.0
+  hr_noise_sd_bpm: 2.0
+  hrv_noise_sd_ms: 4.0

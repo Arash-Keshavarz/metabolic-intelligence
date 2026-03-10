@@ -1,0 +1,23 @@
+seed: 42
+device: "cpu"
+
+mlflow:
+  experiment_name: "glycemic_forecasting"
+  tracking_uri: null
+
+data:
+  processed_dir: data/processed
+  batch_size: 128
+  num_workers: 0
+
+personalization:
+  n_users_to_finetune: 15     # from held-out users split
+  finetune_epochs: 6
+  finetune_lr: 0.0005
+  weight_decay: 0.0001
+  grad_clip_norm: 1.0
+  freeze_backbone: false
+
+artifacts:
+  output_dir: artifacts
+  global_model_path: artifacts/models/global_model.pt

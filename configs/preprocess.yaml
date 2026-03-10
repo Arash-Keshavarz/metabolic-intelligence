@@ -1,0 +1,41 @@
+seed: 42
+
+raw_path: data/raw/synthetic_wearable.csv
+output_dir: data/processed
+
+schema:
+  timestamp_col: timestamp
+  user_id_col: user_id
+  target_col: glucose
+
+feature_engineering:
+  horizon_minutes: 120
+  window_minutes: 180
+  freq_minutes: 5
+
+  rolling_features:
+    enabled: true
+    windows_minutes: [30, 60, 120]
+
+  cyclical_time:
+    enabled: true
+    include_day_of_week: true
+
+normalization:
+  strategy: "global_standard"  # global_standard | per_user_standard
+
+splits:
+  # two evaluation regimes supported by training:
+  # - "global_users": hold out entire users
+  # - "within_user": time split per user
+  global_users:
+    train_frac: 0.70
+    val_frac: 0.15
+    test_frac: 0.15
+  within_user:
+    train_frac: 0.70
+    val_frac: 0.15
+    test_frac: 0.15
+
+artifacts:
+  output_dir: artifacts

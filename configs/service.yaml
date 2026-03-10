@@ -1,0 +1,11 @@
+service:
+  window_minutes: 180
+  horizon_minutes: 120
+  freq_minutes: 5
+
+inference:
+  mc_dropout_samples: 30
+
+paths:
+  model_artifact_path: ${MODEL_ARTIFACT_PATH}
+  feature_spec_path: ${FEATURES_ARTIFACT_PATH}

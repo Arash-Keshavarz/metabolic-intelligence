@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  mlflow:
+    build:
+      context: .
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri /app/mlruns
+      --default-artifact-root /app/artifacts
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./artifacts:/app/artifacts
+    environment:
+      - MLFLOW_TRACKING_URI=http://0.0.0.0:5000
+
+  api:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mlflow
+    env_file:
+      - .env
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./configs:/app/configs
